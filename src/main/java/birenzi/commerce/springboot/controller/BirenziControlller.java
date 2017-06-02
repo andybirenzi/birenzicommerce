@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BirenziControlller {
 	@GetMapping(value = { "/", "/index" })
 	public String index() {
-		System.out.println("index");
 		return "/pages/index";
+	}
+	@GetMapping(value = { "login"})
+	public String login() {
+		return "/pages/login";
 	}
 
 }
