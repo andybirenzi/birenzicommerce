@@ -7,13 +7,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.BasePasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.BootstrapWith;
 
 import birenzi.commerce.springboot.pojo.Role;
 import birenzi.commerce.springboot.pojo.User;
 import birenzi.commerce.springboot.repository.RoleRepository;
 import birenzi.commerce.springboot.repository.UserRepository;
-
+@Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepo;
@@ -23,13 +24,13 @@ public class UserServiceImpl implements UserService {
 	BCryptPasswordEncoder encoder;
 
 	@Override
-	public User findByEmail(String email) {
+	public User findUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return userRepo.findByEmail(email);
 	}
 
 	@Override
-	public User findByUserName(String userName) {
+	public User findUserByUserName(String userName) {
 		// TODO Auto-generated method stub
 		return userRepo.findByUserName(userName);
 	}
