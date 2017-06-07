@@ -29,11 +29,7 @@ public class WebMvcConfig extends WebSecurityConfigurerAdapter {
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
-		return pwdEncoder;
-	}
+	
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
