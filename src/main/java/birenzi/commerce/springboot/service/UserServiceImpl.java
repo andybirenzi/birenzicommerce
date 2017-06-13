@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.BasePasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.BootstrapWith;
 
@@ -18,10 +16,10 @@ import birenzi.commerce.springboot.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepo;
-	@Autowired
-	RoleRepository roleRepo;
-	@Autowired
-	BCryptPasswordEncoder encoder;
+//	@Autowired
+//	RoleRepository roleRepo;
+//	@Autowired
+//	BCryptPasswordEncoder encoder;
 
 	@Override
 	public User findUserByEmail(String email) {
@@ -38,10 +36,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(User user) {
 		// TODO Auto-generated method stub
-		user.setPassword(encoder.encode(user.getPassword()));
+//		user.setPassword(encoder.encode(user.getPassword()));
 		user.setActive(1);
-		Role userRole = roleRepo.findByRole("ADMIN");
-		user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+//		Role userRole = roleRepo.findByRole("ADMIN");
+//		user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 		userRepo.save(user);
 	}
 
