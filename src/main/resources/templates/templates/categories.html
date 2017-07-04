@@ -12,34 +12,36 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<div th:replace="fragments/nav :: navigation"></div>
 	<div class="container">
 		<h2>Products list</h2>
 		<p>List of all available products</p>
 		<a href="/addcategory"><button type="button"
 				class="btn btn-primary">add category</button></a>
-		<button type="button" class="btn btn-success">Edit</button>
-		<button type="button" class="btn btn-danger">delete</button>
 		<button type="button" class="btn btn-danger">delete selected</button>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-				<td><input type="checkbox" value=""/> Select all </td>
+					<td><input type="checkbox" value="" /> Select all</td>
+					<th>Parent</th>
 					<th>Label</th>
 					<th>Description</th>
 					<th>Edit</th>
 					<th>Delete</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="category : ${categories}">
-				<td><input type="checkbox" value=""/></td>
+					<td><input type="checkbox" value="" /></td>
+					<td th:text="${category.parent.label}">yes</td>
 					<td th:text="${category.label}">2.41</td>
 					<td th:text="${category.description}">yes</td>
-					<td >edit</td>
-					
-					<td ><a href="/"><img alt="" src="/img/Delete_icon.png" height="20"/></a></td>
+					<td><a th:href="@{/editcategory/{id}(id=${category.id})}"><button
+								type="button" class="btn btn-success">Edit</button></a></td>
+
+					<td><a th:href="@{/deletecategory/{id}(id=${category.id})}"><button
+								type="button" class="btn btn-danger">delete</button></a></td>
 				</tr>
 			</tbody>
 		</table>

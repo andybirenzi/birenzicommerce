@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Birenzi Commerce</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/nav :: navigation"></div>
+	<div class="container">
+		<h2>Brand list</h2>
+		<p>List of all available Brands</p>
+		<a href="/addbrand"><button type="button"
+				class="btn btn-primary">add brand</button></a>
+		<button type="button" class="btn btn-danger">delete selected</button>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+				<td><input type="checkbox" value=""/> Select all </td>
+					<th>Label</th>
+					<th>Description</th>
+					<th>Edit</th>
+					<th>Delete</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="brand : ${brands}">
+				<td><input type="checkbox" value=""/></td>
+					<td th:text="${brand.label}">2.41</td>
+					<td th:text="${brand.description}">yes</td>
+					<td ><a th:href="@{/editbrand/{id}(id=${brand.id})}"><button type="button" class="btn btn-success">Edit</button></a></td>
+					
+					<td ><a th:href="@{/deletebrand/{id}(id=${brand.id})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
+

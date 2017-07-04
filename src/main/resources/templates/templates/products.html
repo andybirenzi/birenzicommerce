@@ -12,34 +12,39 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<div th:replace="fragments/nav :: navigation"></div>
 	<div class="container">
 		<h2>Products list</h2>
 		<p>List of all available products</p>
 		<a href="/addproduct"><button type="button"
 				class="btn btn-primary">add product</button></a>
-		<button type="button" class="btn btn-success">Edit</button>
-		<button type="button" class="btn btn-danger">delete</button>
 		<button type="button" class="btn btn-danger">delete selected</button>
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<td><input type="checkbox" value="" /> Select all</td>
 					<th>SKU</th>
 					<th>Label</th>
 					<th>Description</th>
+					<th>Category</th>
+					<th>Brand</th>
 					<th>edit</th>
 					<th>delete</th>
-					<th>select</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="product : ${listproduct}">
+					<td><input type="checkbox" value="" /></td>
 					<td th:text="${product.sku}">Onions</td>
 					<td th:text="${product.label}">2.41</td>
 					<td th:text="${product.description}">yes</td>
-					<td >edit</td>
-					<td >delete</td>
-					<td >select</td>
+					<td th:text="${product.productCategory.label}">yes</td>
+					<td th:text="${product.productBrand.label}">yes</td>
+					<td><a th:href="@{editproduct/{id}(id=${product.id})}"><button
+								type="button" class="btn btn-success">Edit</button></a></td>
+					<td><a th:href="@{deleteproduct/{id}(id=${product.id})}"><button
+								type="button" class="btn btn-danger">delete</button></a></td>
+
 				</tr>
 			</tbody>
 		</table>

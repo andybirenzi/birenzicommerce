@@ -1,16 +1,9 @@
 package birenzi.commerce.springboot.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.BootstrapWith;
 
-import birenzi.commerce.springboot.pojo.Role;
 import birenzi.commerce.springboot.pojo.User;
-import birenzi.commerce.springboot.repository.RoleRepository;
 import birenzi.commerce.springboot.repository.UserRepository;
 @Service("userService")
 public class UserServiceImpl implements UserService {

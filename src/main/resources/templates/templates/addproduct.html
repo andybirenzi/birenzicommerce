@@ -12,43 +12,75 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<div th:replace="fragments/nav :: navigation"></div>
 	<div class="container">
 		<h2>Add new product</h2>
-		<form class="form-horizontal" action="#" th:action="@{/addproduct}"
-			th:object="${newproduct}" method="post">
+		<form class="form-horizontal " action="#" th:action="@{/addproduct}"
+			th:object="${newproduct}" method="post" >
+			<div class="col-sm-6" hidden="true">
+				<input type="text" class="form-control" id="id" name="id"
+					th:field="*{id}" />
+			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="sku">SKU:</label>
 				<p class="col-sm-5">
 					<input type="text" class="form-control" id="sku"
 						placeholder="ga234" name="sku" th:field="*{sku}" />
 				</p>
-				<div class="col-sm-5 alert alert-danger">
+				<div class="col-sm-5 alert alert-danger" hidden="true">
 					<strong th:if="${#fields.hasErrors('sku')}" th:errors="*{sku}"></strong>
 				</div>
-				
+
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="label">Label:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-5">
 					<input type="text" class="form-control" id="label"
 						placeholder="iphone 5" name="label" th:field="*{label}" />
 				</div>
-				<div class="alert alert-danger">
+				<div class="alert alert-danger" hidden="true">
 					<strong th:if="${#fields.hasErrors('label')}" th:errors="*{label}"></strong>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="desc">description:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="desc"
-						placeholder="lorem ipsum" name="description"
-						th:field="*{description}" />
+				<div class="col-sm-5">
+					<textarea class="form-control" id="desc" placeholder="lorem ipsum"
+						name="description" th:field="*{description}"></textarea>
 				</div>
-				<div class="alert alert-danger">
-					<strong th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></strong>
+				<div class="alert alert-danger" hidden="true">
+					<strong th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}"></strong>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Product Brand</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="sel1"
+						th:field="*{productBrand.id}">
+						<option value="0">Select</option>
+						<option th:each="brand : ${brands}" th:value="${brand.id}"
+							th:text="${brand.label}" />
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Product Category</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="sel1"
+						th:field="*{productCategory.id}">
+						<option value="0">Select</option>
+						<option th:each="category : ${categories}"
+							th:value="${category.id}" th:text="${category.label}" />
+					</select>
+				</div>
+			</div>
+			<div class="input-group col-sm-4 ">
+				<span class="input-group-addon btn-primary" id="basic-addon1">Browse...</span> <input
+					type="text" class="form-control" placeholder="upload file"
+					aria-describedby="basic-addon1"/>
+			</div>
+			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">Submit</button>
