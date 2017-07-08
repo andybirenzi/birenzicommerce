@@ -3,7 +3,8 @@ package birenzi.commerce.springboot.controller;
 import javax.validation.Valid;
 
 import org.hibernate.annotations.GeneratorType;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,8 @@ import birenzi.commerce.springboot.service.ProductService;
 
 @Controller
 public class BirenziControllerUpdated {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private ProductService productService;
 	@Autowired
@@ -50,7 +53,7 @@ public class BirenziControllerUpdated {
 	@PostMapping(value = "/addproduct")
 	public String saveProduct(@Valid @ModelAttribute("newproduct") Product newproduct, BindingResult result) {
 		if (result.hasErrors()) {
-
+            logger.error("new product filled are not completed");;
 			return "templates/addproduct";
 
 		} else if (newproduct != null && newproduct.getId() != 0) {
@@ -58,9 +61,12 @@ public class BirenziControllerUpdated {
 			product.update(newproduct.getSku(), newproduct.getLabel(), newproduct.getDescription(),
 					newproduct.getProductBrand(), newproduct.getProductCategory());
 			productService.update(product);
-		} else
+			logger.info("product updated");
+		} else{
 			productService.saveProduct(newproduct);
-
+			logger.info("new product saved");
+		}
+          
 		return "redirect:/products";
 	}
 
