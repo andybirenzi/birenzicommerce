@@ -24,7 +24,7 @@ import birenzi.commerce.springboot.service.CategoryService;
 import birenzi.commerce.springboot.service.ProductService;
 
 @Controller
-public class BirenziControllerUpdated {
+public class Controller {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
