@@ -3,7 +3,7 @@ package birenzi.commerce.springboot.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class BirenziControlller {
+public class BirenziControlller2 {
 	
 //	@Autowired
 //	private UserService userService;
